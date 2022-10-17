@@ -28,6 +28,19 @@ def instructions():
     return""
 
 
+# Checks for incorrect input and displays an error message if so
+def num_check(question):
+    error = "Please enter a whole digit"
+    valid = False
+    while not valid:
+        try:
+            response = int(input(question))
+            return response
+
+        except ValueError:
+            print(error)
+
+
 # main routine here
 print("Welcome to my quiz\n")
 
@@ -40,19 +53,21 @@ if played_before == "No":
 rounds_played = 0
 rounds = 15
 lives = 3
-error = "Please enter a whole digit"
 
-for item in range(0, 5):
+for item in range(0, 15):
     # Creates the random numbers for each multiplication from 1 to 12
     math_num1 = random.randint(1, 12)
     math_num2 = random.randint(1, 12)
 
-    # questions 1 to 15
-    start = "Press <Enter> to start play\n"
+    if rounds == 15:
+        input("Press <Enter> to start playing...")
+
+    # questions 1 to 1
     answer = math_num1 * math_num2
-    question = int(input("What is {} x {} = ".format(math_num1, math_num2)))
+
     lives -= 1
     rounds -= 1
+    question = int(input("What is {} x {} = ".format(math_num1, math_num2)))
 
     # If user answer correct
     if question == answer:
@@ -61,7 +76,8 @@ for item in range(0, 5):
         lives += 1
         print("Lives {} \n".format(lives))
         # Display's how many rounds are left in the quiz
-        print("{}/15 Round's Remaining ".format(rounds))
+        if rounds != 0:
+            print("{}/15 Round's Remaining ".format(rounds))
 
     # If user is incorrect
     elif question != answer:
@@ -72,6 +88,8 @@ for item in range(0, 5):
         print("Lives Remaining {} ".format(lives))
         # Shows the rounds remaining
         print("{}/15 Round's Remaining \n".format(rounds))
+        # Adds another round so user has to get answer correct to continue
+        rounds += 1
         # If lives are equal to 0 the game ends and the user loses
         if lives == 0:
             print("you have run out of lives")
