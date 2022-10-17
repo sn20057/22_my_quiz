@@ -2,6 +2,20 @@ import random
 # functions here
 
 
+def statement_generator(statement, decoration):
+
+    sides = decoration * 3
+
+    statement = "{} {} {}".format(sides, statement, sides)
+    top_bottom = decoration * len(statement)
+
+    print(top_bottom)
+    print(statement)
+    print(top_bottom)
+
+    return ""
+
+
 def yes_no(question2):
     valid = False
     while not valid:
@@ -21,10 +35,14 @@ def yes_no(question2):
 
 # instructions function on how to play
 def instructions():
-    print("- - - *HOW TO PLAY* - - -")
-    print()
-    print("The rules of the game here")
-    print()
+    statement_generator("HOW TO PLAY", "!")
+    print("\nThe rules of the game here\n")
+    print("There are 15 random multiplication questions")
+    print("You have 3 lives, if you get one question wrong you\n"
+          "Lose a life, you get one right you keep that life\n"
+          "And move on to the next question")
+    print("If you lose your 3 lives you lose. If you\n"
+          "Survive the 15 rounds you win\n")
     return""
 
 
@@ -42,9 +60,12 @@ def num_check(question):
 
 
 # main routine here
-print("Welcome to my quiz\n")
+statement_generator("Welcome to my quiz", "*")
+print()
 
-played_before = yes_no("Have you played this game before? ")
+played_before = yes_no("Have you played this game before?")
+print()
+print()
 
 # if user hasn't played display the instructions
 if played_before == "No":
@@ -71,13 +92,14 @@ for item in range(0, 15):
 
     # If user answer correct
     if question == answer:
-        print("Correct\n")
+        statement_generator("Correct", "♠")
+        print()
         # They keep their life and displays how many they have left
         lives += 1
-        print("Lives {} \n".format(lives))
+        print("Lives {} ".format(lives))
         # Display's how many rounds are left in the quiz
         if rounds != 0:
-            print("{}/15 Round's Remaining ".format(rounds))
+            print("{}/15 Round's Remaining ".format(rounds), "\n")
 
     # If user is incorrect
     elif question != answer:
