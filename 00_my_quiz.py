@@ -47,12 +47,12 @@ def instructions():
 
 
 # Checks for incorrect input and displays an error message if so
-def num_check(question):
+def num_check(question3):
     error = "Please enter a whole digit"
     valid = False
     while not valid:
         try:
-            response = int(input(question))
+            response = int(input(question3))
             return response
 
         except ValueError:
@@ -88,7 +88,7 @@ for item in range(0, 15):
 
     lives -= 1
     rounds -= 1
-    question = int(input("What is {} x {} = ".format(math_num1, math_num2)))
+    question = num_check("What is {} x {} = ".format(math_num1, math_num2))
 
     # If user answer correct
     if question == answer:
@@ -103,7 +103,8 @@ for item in range(0, 15):
 
     # If user is incorrect
     elif question != answer:
-        print("Incorrect\n")
+        statement_generator("Incorrect", "#",)
+        print()
         # shows the right answer for the question
         print("Answer is {} \n".format(answer))
         # Display's remaining lives
@@ -114,7 +115,8 @@ for item in range(0, 15):
         rounds += 1
         # If lives are equal to 0 the game ends and the user loses
         if lives == 0:
-            print("you have run out of lives")
+            print("you have run out of lives\n")
+            statement_generator("GAME OVER", "!")
             break
 
     # If rounds are equal to 0 the game ends the user wins
