@@ -2,6 +2,7 @@ import random
 # functions here
 
 
+# creates decoration around statements
 def statement_generator(statement, decoration):
 
     sides = decoration * 3
@@ -16,6 +17,7 @@ def statement_generator(statement, decoration):
     return ""
 
 
+# yes_no function
 def yes_no(question2):
     valid = False
     while not valid:
@@ -48,6 +50,7 @@ def instructions():
 
 # Checks for incorrect input and displays an error message if so
 def num_check(question3):
+    # error message to invalid text
     error = "Please enter a whole digit"
     valid = False
     while not valid:
@@ -60,9 +63,10 @@ def num_check(question3):
 
 
 # main routine here
+# welcome user to game
 statement_generator("Welcome to my quiz", "*")
 print()
-
+# ask if played before
 played_before = yes_no("Have you played this game before?")
 print()
 print()
@@ -72,10 +76,10 @@ if played_before == "No":
     instructions()
 
 rounds_played = 0
-rounds = 15
+rounds = 3
 lives = 3
 
-for item in range(0, 15):
+for item in range(0, 3):
     # Creates the random numbers for each multiplication from 1 to 12
     math_num1 = random.randint(1, 12)
     math_num2 = random.randint(1, 12)
@@ -117,12 +121,14 @@ for item in range(0, 15):
         if lives == 0:
             print("you have run out of lives\n")
             statement_generator("GAME OVER", "!")
+            print("\nThank you for playing my game :)")
             break
 
     # If rounds are equal to 0 the game ends the user wins
     if rounds == 0:
+        print()
         # Congratulations message
-        print("You Have Completed The Quiz Successfully")
+        statement_generator("You Have Completed The Quiz Successfully", "*")
         # Shows how many the user has remaining
         print("Your Remaining Lives Are {}".format(lives))
         # A thankyou message
